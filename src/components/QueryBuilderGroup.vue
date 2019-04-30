@@ -20,8 +20,6 @@
             <option v-for="(rule, index) in rules" :key="index" :value="rule">{{ rule.label }}</option>
           </select>
 
-          <button type="button" @click="addRule" :class="{ 'btn btn-default': styled }" v-html="labels.addRule"></button>
-          <button type="button" :class="{ 'btn btn-default': styled }" v-if="this.depth < this.maxDepth" @click="addGroup" v-html="labels.addGroup"></button>
         </div>
       </div>
 
@@ -43,6 +41,10 @@
           v-on:child-deletion-requested="removeChild">
         </component>
       </div>
+
+      <button type="button" @click="addRule" :class="{ 'btn btn-default': styled }" v-if="depth > 1" v-html="labels.addRule"></button>
+      <button type="button" :class="{ 'btn btn-default': styled }" v-if="this.depth < this.maxDepth && this.depth == 1" @click="addGroup" v-html="labels.addGroup"></button>
+
     </div>
   </div>
 </template>
